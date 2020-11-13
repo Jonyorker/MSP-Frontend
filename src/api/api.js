@@ -12,7 +12,10 @@ export function apiAuth(method, data = '') {
 
     let dto = UserDataTransferObject.createDataTransferObject(data);
 
-    console.log(dto);
+    if (store.state.user['token']) {
+        let jwt = store.state.user['token'];
+        Axios.defaults.headers.common['Authorization'] = "Bearer " + jwt;
+    }
 
     return Axios[method](endpointUrl, dto)
         .then(function (response) {
