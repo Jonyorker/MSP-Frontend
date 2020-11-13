@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import { apiAuth } from '@/api/api'
 export default {
   name: "FullLogin",
   data: () => ({
@@ -117,7 +118,13 @@ export default {
     submit() {
       this.$refs.form.validate();
       if (this.$refs.form.validate(true)) {
-        this.$router.push({ path: "/dashboards/analytical" });
+        const payload = {
+          'email' : this.email,
+          'password' : this.password
+        }
+        apiAuth('post', payload).then( () => {
+          this.$router.push({path: "/dashboards/analytical"});
+        })
       }
     }
   }

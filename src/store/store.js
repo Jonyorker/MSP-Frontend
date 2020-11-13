@@ -11,6 +11,9 @@ export default new Vuex.Store({
     SidebarBg: "",
     navbarColor: "primary",
     setHorizontalLayout: false, // Horizontal layout
+    user: {
+      token: null
+    }
   },
   mutations: {
     SET_SIDEBAR_DRAWER(state, payload) {
